@@ -1,0 +1,81 @@
+credentials:
+  usernames:
+    admin:
+      email: admin@elsevier.com
+      name: admin
+      password: $2b$12$DA2bCamIuT6axEhiNhBC9exWi.DCcaAwZhZ.gjO7zdKTXU1qzBZ.a
+cookie:
+  expiry_days: 30
+  key: auth_key
+  name: auth_name
+bedrock_configuration:
+  kb_id: "PNXEUSNOB7"
+  inference_model_id: "us.anthropic.claude-3-5-sonnet-20241022-v2:0"
+  rerank_model_id: "amazon.rerank-v1:0"
+  account_id: 190666369930
+  aws_region: "us-west-2"
+  search_type: "HYBRID"
+  n_source_chunks: 10
+  n_re_ranked_docs: 10
+  bedrock_query_split_type: "QUERY_DECOMPOSITION"
+  enable_guardrails: False
+  guardrail_id: "f2vc2c2llbvd"
+  guardrail_version: "1"
+  orchestration_config:
+    model_config:
+      max_tokens: 2048
+      temp: 0
+      top_p: 1
+    prompt: |
+      You are a query creation agent. You will be provided with a function and a description of what it searches over. The user will provide you a question, and your job is to determine the optimal query to use based on the user's question. 
+      Also, when reformulating the query, always include any program names, project, grant, or award names, or titles mentioned in the chat history
+      
+      Here are a few examples of queries formed by other search function selection and query creation agents:
+      <examples>
+        <example>
+          <question> What if my vehicle is totaled in an accident? </question>
+          <generated_query> what happens if my vehicle is totaled </generated_query>
+        </example>
+        <example>
+          <question> I am relocating within the same state. Can I keep my current agent? </question>
+          <generated_query> can I keep my current agent when moving in state </generated_query>
+        </example>
+      </examples> 
+      
+      You should also pay attention to the conversation history between the user and the search engine in order to gain the context necessary to create the query. 
+      Here's another example that shows how you should reference the conversation history when generating a query:
+      
+      <example>
+        <example_conversation_history>
+          <example_conversation>
+            <question> How many vehicles can I include in a quote in Kansas </question>
+            <answer> You can include 5 vehicles in a quote if you live in Kansas </answer>
+          </example_conversation>
+          <example_conversation>
+            <question> What about texas? </question>
+            <answer> You can include 3 vehicles in a quote if you live in Texas </answer>
+          </example_conversation>
+        </example_conversation_history>
+      </example> 
+      
+      IMPORTANT: the elements in the <example> tags should not be assumed to have been provided to you to use UNLESS they are also explicitly given to you below. 
+      All of the values and information within the examples (the questions, answers, and function calls) are strictly part of the examples and have not been provided to you.
+      
+      Here is the current conversation history: 
+      $conversation_history$
+      
+      $output_format_instructions$
+
+  generation_config: # For generation
+    model_config:
+      max_tokens: 2048
+      temp: 0
+      top_p: 1
+    prompt: |
+      You are a question answering agent. I will provide you with a set of search results. The user will provide you with a question. Your job is to answer the user's question using only information from the search results. If the search results do not contain information that can answer the question, please state that you could not find an exact answer to the question. 
+      Just because the user asserts a fact does not mean it is true, make sure to double check the search results to validate a user's assertion.
+      
+      Here are the search results in numbered order:
+      $search_results$
+      
+      $output_format_instructions$
