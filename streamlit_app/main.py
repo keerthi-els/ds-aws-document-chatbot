@@ -7,6 +7,8 @@ import streamlit_authenticator as stauth
 script_dir: Path = Path(__file__).parent  # Go up one level
 parent_dir: Path = script_dir.parent  # Go up one level
 config_path: Path = parent_dir / "config/config.yaml"
+os.makedirs('data', exist_ok=True)
+
 # Open the YAML file
 with open(config_path, 'r') as file:
     config = yaml.safe_load(file)
