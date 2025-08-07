@@ -71,7 +71,7 @@ Replace `your_copied_path` with the path you copied:
 export PYTHONPATH="your_copied_path"
 ```
 
-## 4. Set AWS Credentials
+### 8. Set AWS Credentials
 
 - Ensure your system has the necessary AWS credentials to access S3 and Bedrock services.
 - You can do this by:
@@ -86,13 +86,28 @@ export PYTHONPATH="your_copied_path"
 
   - **Or** by attaching an IAM role to your system with the required permissions for S3 and Bedrock.
 
-### 8. Run the Streamlit app
+### 9. Run the Streamlit app
 
 ```bash
 streamlit run streamlit_app/main.py
 ```
 
----
+### 10. Log in to Streamlit
+
+- You can log in to the Streamlit app using the following temporary credentials:
+
+  - **Username:** `admin` (you can change this by editing the `config.yaml` file, replacing `admin`)
+  - **Password:** `password` (you can generate a hashed password using the `password_generator.py` script located in `client_packages` and paste the hashed password into the `config.yaml` under the `credentials` section)
+
+```yaml
+credentials:
+  usernames:
+    your_user_name:
+      email: your_email
+      name: your_name
+      password: your_hashed_password
+```
+
 
 ## Notes
 
@@ -103,4 +118,3 @@ streamlit run streamlit_app/main.py
 ```bash
 deactivate
 ```
-
