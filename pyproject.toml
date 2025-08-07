@@ -1,0 +1,18 @@
+[project]
+name = "ds-aws-document-chatbot"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "boto3==1.37.13",
+    "botocore==1.37.13",
+    "openpyxl==3.1.5",
+    "petname==2.6",
+    "plotly==5.24.1",
+    "python-dotenv==1.1.0",
+    "python-json-logger==3.3.0",
+    "pyyaml==6.0.2",
+    "streamlit==1.44.1",
+    "streamlit-authenticator==0.4.2",
+]
