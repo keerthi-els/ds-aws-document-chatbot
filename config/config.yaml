@@ -9,7 +9,7 @@ cookie:
   key: auth_key
   name: auth_name
 bedrock_configuration:
-  kb_id: "PNXEUSNOB7"
+  kb_id: ""
   inference_model_id: "us.anthropic.claude-3-5-sonnet-20241022-v2:0"
   rerank_model_id: "amazon.rerank-v1:0"
   account_id: 190666369930
